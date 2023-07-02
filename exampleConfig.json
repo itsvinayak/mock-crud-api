@@ -1,0 +1,26 @@
+[
+    {
+        "name": "server",
+        "type": "POST",
+        "port": 3000,
+        "path": "/",
+        "input": {
+            "type": "text"
+        },
+        "output": "text",
+        "elseOutputErrorCode": 200,
+        "elseOutput": "textElse",
+        "errorCodes": 500,
+        "errorMessages": "Internal Server Error"
+    },
+    {
+        "name": "server1",
+        "type": "GET",
+        "port": 3001,
+        "path": "/e",
+        "input": {},
+        "output": "text",
+        "elseOutputErrorCode": 400,
+        "elseOutput": "textElse"
+    }
+]
