@@ -1,5 +1,5 @@
 {
-  "name": "mock-rest-api",
+  "name": "mock-crud-api",
   "version": "1.0.0",
   "description": "mock api for testing",
   "repository": {
@@ -8,6 +8,7 @@
   },
   "keywords": [
     "mock",
+    "crud",
     "api",
     "rest"
   ],
