@@ -1,10 +1,10 @@
-# Plugin: mock-rest-api
+# Plugin: mock-crud-api
 
 This plugin allows you to easily create mock REST API servers for testing and development purposes. It provides a simple way to define server configurations, handle requests, and send mock responses.
 
 ## Installation
 
-To install the mock-rest-api plugin, follow these steps:
+To install the mock-crud-api plugin, follow these steps:
 
 - Make sure you have Node.js installed on your machine.
 - Open a terminal or command prompt.
@@ -12,16 +12,16 @@ To install the mock-rest-api plugin, follow these steps:
 - Run the following command to install the plugin:
 
 ```bash
-npx mock-rest-api -config config.json
+npx mock-crud-api -config config.json
 ```
 
 ```bash
-npx mock-rest-api -c config.json
+npx mock-crud-api -c config.json
 ```
 
 ## Usage
 
-To use the mock-rest-api plugin, follow these steps:
+To use the mock-crud-api plugin, follow these steps:
 
 - Create a configuration file (e.g., config.json) with the server configurations.
 
