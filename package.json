@@ -1,15 +1,24 @@
 {
-  "dependencies": {
-    "lodash": "^4.17.21"
-  },
-  "name": "mock-api",
+  "name": "mock-rest-api",
   "version": "1.0.0",
-  "description": "e",
+  "description": "mock api for testing",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsvinayak/mock-rest-api.git"
+  },
+  "keywords": [
+    "mock",
+    "api",
+    "rest"
+  ],
+  "bugs": {
+    "url": "https://github.com/itsvinayak/mock-rest-api/issues"
+  },
   "main": "index.mjs",
   "scripts": {
     "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Vinayak",
+  "license": "MIT"
 }
