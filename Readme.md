@@ -2,6 +2,8 @@
 
 This package allows to create a mock REST API servers for testing and development purposes. It provides a simple way to define server configurations, handle requests, and send mock responses.
 
+[MOCKAPIIMAGE](./image/Mock%20crud%20api.png)
+
 ## Installation
 
 To install the mock-crud-api plugin, follow these steps:
