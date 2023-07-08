@@ -1,6 +1,6 @@
-# Plugin: mock-crud-api
+# mock-crud-api
 
-This plugin allows you to easily create mock REST API servers for testing and development purposes. It provides a simple way to define server configurations, handle requests, and send mock responses.
+This package allows to create a mock REST API servers for testing and development purposes. It provides a simple way to define server configurations, handle requests, and send mock responses.
 
 ## Installation
 
@@ -25,32 +25,36 @@ To use the mock-crud-api plugin, follow these steps:
 
 - Create a configuration file (e.g., config.json) with the server configurations.
 
-```json
+```Json
 [
-  {
-    "name": "Server 1",
-    "type": "GET",
-    "port": 3000,
-    "path": "/api/users",
-    "input": { "name": "test" },
-    "output": "Hello World",
-    "elseOutputErrorCode": 400,
-    "elseOutput": "Bad Request",
-    "errorCodes": 404,
-    "errorMessages": "Not Found"
-  },
-  {
-    "name": "Server 2",
-    "type": "POST",
-    "port": 3001,
-    "path": "/api/posts",
-    "input": { "title": "Sample Post" },
-    "output": "Post Created",
-    "elseOutputErrorCode": 400,
-    "elseOutput": "Bad Request",
-    "errorCodes": 404,
-    "errorMessages": "Not Found"
-  }
+    {
+        "name": "post-server",
+        "type": "POST",
+        "port": 3000,
+        "path": "/",
+        "input": {
+            "type": "text"
+        },
+        "output": "text",
+        "errorCode": 500,
+        "errorMessage": "Internal Server Error"
+    },
+    {
+        "name": "get-server-1",
+        "type": "GET",
+        "port": 3001,
+        "path": "/test",
+        "input": null,
+        "output": "text"
+    },
+    {
+        "name": "get-server-2",
+        "type": "GET",
+        "port": 3002,
+        "path": "/test",
+        "input": {},
+        "output": "text"
+    }
 ]
 ```
 
@@ -62,10 +66,8 @@ In the configuration file, you can define multiple server configurations. Each c
 - path: The API endpoint path for the server.
 - input: The input for which the output is to be generated.
 - output: The output to be generated for matching requests.
-- elseOutputErrorCode: The error code to be returned if the - input is not matched.
-- elseOutput: The output to be returned if the input is not matched.
-- errorCodes: The error code to be returned if the server is not found.
-- errorMessages: The error message to be returned if the server is not found.
+- errorCode: The error code to be returned if the server is not found.
+- errorMessage: The error message to be returned if the server is not found.
 
 ### License
 

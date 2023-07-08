@@ -1,6 +1,6 @@
 [
     {
-        "name": "server",
+        "name": "post-server",
         "type": "POST",
         "port": 3000,
         "path": "/",
@@ -8,19 +8,23 @@
             "type": "text"
         },
         "output": "text",
-        "elseOutputErrorCode": 200,
-        "elseOutput": "textElse",
-        "errorCodes": 500,
-        "errorMessages": "Internal Server Error"
+        "errorCode": 500,
+        "errorMessage": "Internal Server Error"
     },
     {
-        "name": "server1",
+        "name": "get-server-1",
         "type": "GET",
         "port": 3001,
-        "path": "/e",
+        "path": "/test",
+        "input": null,
+        "output": "text"
+    },
+    {
+        "name": "get-server-2",
+        "type": "GET",
+        "port": 3002,
+        "path": "/test",
         "input": {},
-        "output": "text",
-        "elseOutputErrorCode": 400,
-        "elseOutput": "textElse"
+        "output": "text"
     }
 ]

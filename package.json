@@ -1,13 +1,23 @@
 {
   "name": "mock-crud-api",
   "version": "1.0.0",
-  "description": "mock api for testing",
+  "description": "mock crud api for testing",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/itsvinayak/mock-rest-api.git"
   },
   "keywords": [
     "mock",
+    "mock-api",
+    "mock-server",
+    "mock-rest-api",
+    "mock-crud-api",
+    "testing",
+    "test",
+    "mocking",
+    "QA",
+    "QA-testing",
+    "QA-test",
     "crud",
     "api",
     "rest"
@@ -15,11 +25,22 @@
   "bugs": {
     "url": "https://github.com/itsvinayak/mock-rest-api/issues"
   },
-  "main": "index.mjs",
+  "main": "index.js",
   "scripts": {
-    "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --forceExit --detectOpenHandles --coverage",
+    "dev": "node index.js -c ./exampleConfig.json",
+    "start": "node index.js -c",
+    "lint": "eslint .",
+    "fix-lint": "eslint --fix .",
+    "help": "node index.js -h"
   },
   "author": "Vinayak",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "supertest": "^6.3.3"
+  }
 }
