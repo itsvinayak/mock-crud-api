@@ -1,5 +1,5 @@
 const fs = require('fs');
-const chalk = require('chalk');
+
 const {
   deepCompare,
   loadConfig,
@@ -62,7 +62,7 @@ describe('loadConfig', () => {
   it('should throw an error for invalid config file', () => {
     expect(() => {
       loadConfig('invalid-config.json');
-    }).toThrowError();
+    }).toThrow();
   });
 });
 
@@ -98,13 +98,13 @@ describe('validateData', () => {
   it('should throw an error if port is missing', () => {
     expect(() => {
       validateData({ type: 'GET' });
-    }).toThrowError('Port is required');
+    }).toThrow('Port is required');
   });
 
   it('should throw an error if type is missing', () => {
     expect(() => {
       validateData({ port: 3000 });
-    }).toThrowError('Type is required');
+    }).toThrow('Type is required');
   });
 
   it('should not throw an error if data is valid', () => {

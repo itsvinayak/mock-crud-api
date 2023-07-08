@@ -1,5 +1,4 @@
 const fs = require("fs");
-const chalk = require("chalk");
 
 
 const deepCompare = (obj1, obj2, visited = new WeakMap()) => {

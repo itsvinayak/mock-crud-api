@@ -1,12 +1,14 @@
 const http = require("http");
 const chalk = require("chalk");
+const process = require("node:process");
+
 const {
   deepCompare,
   loadConfig,
   clearUrl,
   parseQueryString,
   validateData,
-  httpErrorIfPresent
+  httpErrorIfPresent,
 } = require("./utils");
 const { parseArgs } = require("node:util");
 
