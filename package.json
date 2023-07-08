@@ -1,6 +1,6 @@
 {
   "name": "mock-crud-api",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "mock crud api for testing",
   "repository": {
     "type": "git",
@@ -9,6 +9,7 @@
   "keywords": [
     "mock",
     "mock-api",
+    "mocking-api",
     "mock-server",
     "mock-rest-api",
     "mock-crud-api",
