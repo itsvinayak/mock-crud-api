@@ -1,6 +1,6 @@
 {
   "name": "mock-crud-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "mock crud api for testing",
   "repository": {
     "type": "git",
