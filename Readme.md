@@ -48,6 +48,7 @@ To use the mock-crud-api plugin, follow these steps:
         "input": {
             "type": "text"
         },
+        "code": 200,
         "output": "text",
         "errorCode": 500,
         "errorMessage": "Internal Server Error"
@@ -58,6 +59,7 @@ To use the mock-crud-api plugin, follow these steps:
         "port": 3001,
         "path": "/test",
         "input": null,
+        "code": 200,
         "output": "text"
     },
     {
@@ -66,7 +68,21 @@ To use the mock-crud-api plugin, follow these steps:
         "port": 3002,
         "path": "/test",
         "input": {},
+        "code": 201,
         "output": "text"
+    },
+    {
+        "name": "patch-server-3",
+        "type": "PATCH",
+        "port": 3003,
+        "path": "/test",
+        "input": {
+            "type": "json"
+        },
+        "code": 201,
+        "output": "Updated",
+        "errorCode": 500,
+        "errorMessage": "Internal Server Error"
     }
 ]
 ```
@@ -78,6 +94,7 @@ In the configuration file, you can define multiple server configurations. Each c
 - port: The port number on which the server will listen.
 - path: The API endpoint path for the server.
 - input: The input for which the output is to be generated.
+- code: Code if server found successfully
 - output: The output to be generated for matching requests.
 - errorCode: The error code to be returned if the server is not found.
 - errorMessage: The error message to be returned if the server is not found.

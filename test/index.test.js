@@ -44,11 +44,12 @@ describe("API Tests", () => {
     expect(response.text).toBe("Internal Server Error");
   });
 
-  it("GET request on PORT 3001 from config with correct path", async () => {
+  it("GET request on PORT 3001 from config with incorrect path", async () => {
     const serverConfig = serverList[1];
     const { port } = serverConfig;
+    const path = serverConfig.path;
     const url = `http://localhost:${port}`;
-    const response = await request(url).get("/");
+    const response = await request(url).get(path);
     expect(response.status).toBe(404);
     expect(response.text).toBe("Not Found");
   });
@@ -71,7 +72,7 @@ describe("API Tests", () => {
     const url = `http://localhost:${port}`;
     console.log(url + path);
     const response = await request(url).get(path);
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(201);
     expect(response.text).toBe("text");
   });
 
@@ -85,4 +86,27 @@ describe("API Tests", () => {
     expect(response.status).toBe(404);
     expect(response.text).toBe("Not Found");
   });
+
+  it("PATCH request on PORT 3003 from config with correct path and input", async () => {
+    const serverConfig = serverList[3];
+    const { port } = serverConfig;
+    const path = serverConfig.path + "?type=json";
+    const url = `http://localhost:${port}`;
+    console.log(url + path);
+    const response = await request(url).patch(path);
+    expect(response.status).toBe(201);
+    expect(response.text).toBe("Updated");
+  });
+
+  it("PATCH request on PORT 3003 from config with correct path and input which didnt match input in config", async () => {
+    const serverConfig = serverList[3];
+    const { port } = serverConfig;
+    const path = serverConfig.path + "?type=json1";
+    const url = `http://localhost:${port}`;
+    console.log(url + path);
+    const response = await request(url).patch(path);
+    expect(response.status).toBe(500);
+    expect(response.text).toBe("Internal Server Error");
+  });
+
 });

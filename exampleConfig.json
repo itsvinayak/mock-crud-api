@@ -7,6 +7,7 @@
         "input": {
             "type": "text"
         },
+        "code": 200,
         "output": "text",
         "errorCode": 500,
         "errorMessage": "Internal Server Error"
@@ -17,6 +18,7 @@
         "port": 3001,
         "path": "/test",
         "input": null,
+        "code": 200,
         "output": "text"
     },
     {
@@ -25,6 +27,20 @@
         "port": 3002,
         "path": "/test",
         "input": {},
+        "code": 201,
         "output": "text"
+    },
+    {
+        "name": "patch-server-3",
+        "type": "PATCH",
+        "port": 3003,
+        "path": "/test",
+        "input": {
+            "type": "json"
+        },
+        "code": 201,
+        "output": "Updated",
+        "errorCode": 500,
+        "errorMessage": "Internal Server Error"
     }
 ]

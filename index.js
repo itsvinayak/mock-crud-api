@@ -8,7 +8,8 @@ const {
   clearUrl,
   parseQueryString,
   validateData,
-  httpErrorIfPresent,
+  httpErrorResponseIfPresent,
+  httpResponseIfPresent
 } = require("./utils");
 const { parseArgs } = require("node:util");
 
@@ -20,9 +21,10 @@ const { parseArgs } = require("node:util");
  * @param {string} config.path
  * @param {string} config.type
  * @param {Object} config.input
+ * @param {number} config.code
  * @param {Object} config.output
- * @param {number} config.elseOutputErrorCode
- * @param {Object} config.elseOutput
+ * @param {number} config.errorCode
+ * @param {string} config.errorMessage
  * @returns {void}
  */
 class CreateServer {
@@ -32,6 +34,7 @@ class CreateServer {
     path,
     type,
     input,
+    code,
     output,
     errorCode,
     errorMessage,
@@ -40,6 +43,7 @@ class CreateServer {
     this.path = path || "/";
     this.type = type;
     this.input = input || null;
+    this.code = code || 200;
     this.output = output || null;
     this.errorCode = errorCode || null;
     this.errorMessage = errorMessage || null;
@@ -57,6 +61,7 @@ class CreateServer {
         path,
         type,
         input: JSON.stringify(input) || "null",
+        code,
         output: JSON.stringify(output) || "null",
         errorCode: JSON.stringify(errorCode) || "null",
         errorMessage: JSON.stringify(errorMessage) || "null",
@@ -106,11 +111,12 @@ class CreateServer {
         }
         if (canRes) {
           if (this.output) {
-            res.writeHead(200, { "Content-Type": "text/plain" });
-            console.log(chalk.blue("output : ", this.output));
-            res.end(this.output);
+            let { code, output } = httpResponseIfPresent(this.code, this.output);
+            res.writeHead(code, { "Content-Type": "text/plain" });
+            console.log(chalk.blue("output : ", output));
+            res.end(output);
           } else {
-            let { errorCode, errorMessage } = httpErrorIfPresent(
+            let { errorCode, errorMessage } = httpErrorResponseIfPresent(
               this.errorCode,
               this.errorMessage
             );
@@ -121,7 +127,7 @@ class CreateServer {
             res.end(errorMessage);
           }
         } else {
-          let { errorCode, errorMessage } = httpErrorIfPresent(
+          let { errorCode, errorMessage } = httpErrorResponseIfPresent(
             this.errorCode,
             this.errorMessage
           );
@@ -132,7 +138,7 @@ class CreateServer {
           res.end(errorMessage);
         }
       } else {
-        let { errorCode, errorMessage } = httpErrorIfPresent(
+        let { errorCode, errorMessage } = httpErrorResponseIfPresent(
           this.errorCode,
           this.errorMessage
         );
@@ -143,7 +149,7 @@ class CreateServer {
         res.end(errorMessage);
       }
     } else {
-      let { errorCode, errorMessage } = httpErrorIfPresent(
+      let { errorCode, errorMessage } = httpErrorResponseIfPresent(
         this.errorCode,
         this.errorMessage
       );
@@ -175,9 +181,7 @@ class CreateServer {
  * input: {
  * name: "test"
  * },
- * output: "test",
- * elseOutputErrorCode: 400,
- * elseOutput: "Bad Request"
+ * output: "test"
  * }
  * ]
  * startMultipleServer(config);
@@ -212,6 +216,7 @@ const help = () => {
     port: "port number",
     path: "path of server",
     input: "input for which output is to be generated",
+    code: "code for if server is found",
     output: "output to be generated",
     errorCode: "error code for if server is not found",
     errorMessage: "error message for if server is not found",
@@ -245,7 +250,7 @@ const main = () => {
     let config = loadConfig(values.config);
     startMultipleServer(config);
   } else {
-    console.log("No config file passed");
+    console.log(chalk.red.bgGreen("No config file passed \n"));
     help();
     process.exit(0);
   }

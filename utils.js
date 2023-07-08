@@ -89,12 +89,24 @@ const validateData = (data) => {
  * @returns {Object}
  * @description Returns an object with errorCode and errorMessage if they are present
  */
-const httpErrorIfPresent = (errorCode, errorMessage) => {
-  if (errorCode && errorMessage) {
-    return { errorCode, errorMessage };
-  } else {
-    return { errorCode: 404, errorMessage: "Not Found" };
+const httpErrorResponseIfPresent = (errorCode = 404, errorMessage = "Not Found") => {
+  if(errorCode === null) {
+    errorCode = 404;
   }
+  if(errorMessage === null) {
+    errorMessage = "Not Found";
+  }
+  return { errorCode, errorMessage };
+};
+
+const httpResponseIfPresent = (code = 200, output = "OK") => {
+  if(code === null) {
+    code = 200;
+  }
+  if(output === null) {
+    output = "OK";
+  }
+  return { code, output };
 };
 
 module.exports = {
@@ -103,5 +115,6 @@ module.exports = {
   clearUrl,
   parseQueryString,
   validateData,
-  httpErrorIfPresent
+  httpErrorResponseIfPresent,
+  httpResponseIfPresent
 };
