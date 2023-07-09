@@ -65,7 +65,7 @@ describe("API Tests", () => {
     expect(response.text).toBe("Not Found");
   });
 
-  it(`GET request on PORT 3002 from config with correct path and input `, async () => {
+  it(`GET request on PORT 3002 from config with correct path and input`, async () => {
     const serverConfig = serverList[2]["server"];
     const { port } = serverConfig;
     const path = serverConfig.path + "?method=text";
@@ -76,7 +76,7 @@ describe("API Tests", () => {
     expect(response.text).toBe("text");
   });
 
-  it(`GET request on PORT 3002 from config with correct path and config match all inputs `, async () => {
+  it(`GET request on PORT 3002 from config with correct path and config match all inputs`, async () => {
     const serverConfig = serverList[2]["server"];
     const { port } = serverConfig;
     const path = serverConfig.path;
@@ -86,7 +86,7 @@ describe("API Tests", () => {
     expect(response.text).toBe("text");
   });
 
-  it(`PATCH request on PORT 3003 from config with correct path and input `, async () => {
+  it(`PATCH request on PORT 3003 from config with correct path and input`, async () => {
     const serverConfig = serverList[3]["server"];
     const { port } = serverConfig;
     const path = serverConfig.path + "?method=json";
