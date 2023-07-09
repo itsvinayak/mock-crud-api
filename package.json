@@ -26,6 +26,7 @@
   "bugs": {
     "url": "https://github.com/itsvinayak/mock-rest-api/issues"
   },
+  "homepage": "https://github.com/itsvinayak/mock-rest-api",
   "main": "index.js",
   "scripts": {
     "test": "jest --forceExit --detectOpenHandles --coverage",
@@ -37,6 +38,16 @@
   },
   "author": "Vinayak",
   "license": "MIT",
+  "maintainers": [
+    {
+      "name": "Vinayak",
+      "email": "itssvinayak@gmail.com"
+    }
+  ],
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
   "devDependencies": {
     "eslint": "^8.44.0",
     "eslint-plugin-jest": "^27.2.2",
