@@ -114,7 +114,6 @@ const validateAndCheckMethod = (methods) => {
   if(typeof methods === "string") {
     methods = [methods];
   }
-  console.log(methods);
   methods.forEach((method) => {
     if(!allowedMethods.includes(method)) {
       throw new Error(`Invalid Methods are required. Allowed methods are ${allowedMethods.join(", ")}`);

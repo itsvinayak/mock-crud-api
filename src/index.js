@@ -1,6 +1,6 @@
 const http = require("http");
 const chalk = require("chalk");
-const process = require("node:process");
+const process = require("process");
 
 const {
   deepCompare,
@@ -12,7 +12,7 @@ const {
   httpResponseIfPresent,
   validateAndCheckMethod,
 } = require("./utils");
-const { parseArgs } = require("node:util");
+const { parseArgs } = require("util");
 
 /**
  * @class CreateServer
