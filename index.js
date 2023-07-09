@@ -9,7 +9,8 @@ const {
   parseQueryString,
   validateData,
   httpErrorResponseIfPresent,
-  httpResponseIfPresent
+  httpResponseIfPresent,
+  validateAndCheckMethod,
 } = require("./utils");
 const { parseArgs } = require("node:util");
 
@@ -19,7 +20,7 @@ const { parseArgs } = require("node:util");
  * @param {Object} config
  * @param {number} config.port
  * @param {string} config.path
- * @param {string} config.type
+ * @param {Object} config.method
  * @param {Object} config.input
  * @param {number} config.code
  * @param {Object} config.output
@@ -32,7 +33,7 @@ class CreateServer {
     name,
     port,
     path,
-    type,
+    method,
     input,
     code,
     output,
@@ -41,25 +42,31 @@ class CreateServer {
   }) {
     this.port = port;
     this.path = path || "/";
-    this.type = type;
+    try {
+      this.method = validateAndCheckMethod(method);
+    } catch (error) {
+      console.log(chalk.red(error.message, ` for server ${name}`));
+      process.exit(1);
+    }
     this.input = input || null;
     this.code = code || 200;
     this.output = output || null;
     this.errorCode = errorCode || null;
     this.errorMessage = errorMessage || null;
-    this.server = this.createServer();
+
     try {
       validateData(this);
     } catch (error) {
       console.log(chalk.red(error.message, ` for server ${name}`));
       process.exit(1);
     }
+    this.server = this.createServer();
     console.table([
       {
         "Server Name": name || "default",
         port,
         path,
-        type,
+        method,
         input: JSON.stringify(input) || "null",
         code,
         output: JSON.stringify(output) || "null",
@@ -73,7 +80,10 @@ class CreateServer {
     let server = http.createServer((req, res) => {
       console.log(chalk.green("Request Received : ", req.method, req.url));
       let body = "";
-      if (req.method === "POST") {
+      if (req.url.includes("?")) {
+        req.query = req.url.split("?")[1];
+        this.handleRequest(req, res);
+      } else {
         req.on("data", (chunk) => {
           body += chunk.toString();
         });
@@ -85,11 +95,6 @@ class CreateServer {
           }
           this.handleRequest(req, res);
         });
-      } else if (req.url.includes("?")) {
-        req.query = req.url.split("?")[1];
-        this.handleRequest(req, res);
-      } else {
-        this.handleRequest(req, res);
       }
     });
     server.listen(this.port);
@@ -103,7 +108,7 @@ class CreateServer {
     }
     console.log(chalk.yellow("Requested Object  : ", JSON.stringify(reqObj)));
     let url = clearUrl(req.url);
-    if (req.method === this.type && url === this.path) {
+    if (this.method.includes(req.method) && url === this.path) {
       if (this.input) {
         let canRes = false;
         if (reqObj) {
@@ -111,8 +116,11 @@ class CreateServer {
         }
         if (canRes) {
           if (this.output) {
-            let { code, output } = httpResponseIfPresent(this.code, this.output);
-            res.writeHead(code, { "Content-Type": "text/plain" });
+            let { code, output } = httpResponseIfPresent(
+              this.code,
+              this.output
+            );
+            res.writeHead(code, { "Content-method": "text/plain" });
             console.log(chalk.blue("output : ", output));
             res.end(output);
           } else {
@@ -121,7 +129,7 @@ class CreateServer {
               this.errorMessage
             );
             res.writeHead(errorCode, {
-              "Content-Type": "text/plain",
+              "Content-method": "text/plain",
             });
             console.log(chalk.red("errorMessage : ", errorMessage));
             res.end(errorMessage);
@@ -132,7 +140,7 @@ class CreateServer {
             this.errorMessage
           );
           res.writeHead(errorCode, {
-            "Content-Type": "text/plain",
+            "Content-method": "text/plain",
           });
           console.log(chalk.red("errorMessage : ", errorMessage));
           res.end(errorMessage);
@@ -143,7 +151,7 @@ class CreateServer {
           this.errorMessage
         );
         res.writeHead(errorCode, {
-          "Content-Type": "text/plain",
+          "Content-method": "text/plain",
         });
         console.log(chalk.red("errorMessage : ", errorMessage));
         res.end(errorMessage);
@@ -154,7 +162,7 @@ class CreateServer {
         this.errorMessage
       );
       res.writeHead(errorCode, {
-        "Content-Type": "text/plain",
+        "Content-method": "text/plain",
       });
       console.log(chalk.red("errorMessage : ", errorMessage));
       res.end(errorMessage);
@@ -162,7 +170,9 @@ class CreateServer {
   }
 
   close() {
-    console.log(chalk.red("Server Closed : ", this.port, this.path, this.type));
+    console.log(
+      chalk.red("Server Closed : ", this.port, this.path, this.method)
+    );
     this.server.close();
   }
 }
@@ -177,7 +187,7 @@ class CreateServer {
  * {
  * port: 3000,
  * path: "/test",
- * type: "GET",
+ * method: "GET",
  * input: {
  * name: "test"
  * },
@@ -192,9 +202,16 @@ const startMultipleServer = (config) => {
     config = [config];
   }
   let serverList = [];
+  let serverObj = {};
   for (const serverConfig of config) {
     const server = new CreateServer(serverConfig);
-    serverList.push(server);
+    if (serverConfig.name) {
+      serverObj = {
+        name: serverConfig.name,
+        server,
+      };
+    }
+    serverList.push(serverObj);
   }
   return serverList;
 };
@@ -212,7 +229,8 @@ const help = () => {
   console.log(chalk.black.bgYellow("Example and Syntax of config File: "));
   let configParam = {
     name: "name of server",
-    type: "method type",
+    method:
+      "method of server, allowed methods are GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD",
     port: "port number",
     path: "path of server",
     input: "input for which output is to be generated",

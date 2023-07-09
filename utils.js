@@ -76,9 +76,6 @@ const validateData = (data) => {
   if(!data.port) {
     throw new Error("Port is required");
   }
-  if(!data.type) {
-    throw new Error("Type is required");
-  }
 };
 
 /**
@@ -109,6 +106,24 @@ const httpResponseIfPresent = (code = 200, output = "OK") => {
   return { code, output };
 };
 
+const validateAndCheckMethod = (methods) => {
+  const allowedMethods = ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"];
+  if(!methods) {
+    throw new Error(`Invalid Methods are required. Allowed methods are ${allowedMethods.join(", ")}`);
+  }
+  if(typeof methods === "string") {
+    methods = [methods];
+  }
+  console.log(methods);
+  methods.forEach((method) => {
+    if(!allowedMethods.includes(method)) {
+      throw new Error(`Invalid Methods are required. Allowed methods are ${allowedMethods.join(", ")}`);
+    }
+  });
+  methods = methods.map((method) => method.toUpperCase());
+  return methods;
+}
+
 module.exports = {
   deepCompare,
   loadConfig,
@@ -116,5 +131,6 @@ module.exports = {
   parseQueryString,
   validateData,
   httpErrorResponseIfPresent,
-  httpResponseIfPresent
+  httpResponseIfPresent,
+  validateAndCheckMethod
 };

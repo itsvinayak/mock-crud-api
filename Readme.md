@@ -38,15 +38,15 @@ To use the mock-crud-api plugin, follow these steps:
 
 - Create a configuration file (e.g., config.json) with the server configurations.
 
-```Json
+```JSON
 [
     {
         "name": "post-server",
-        "type": "POST",
+        "method": "POST",
         "port": 3000,
         "path": "/",
         "input": {
-            "type": "text"
+            "method": "text"
         },
         "code": 200,
         "output": "text",
@@ -55,7 +55,7 @@ To use the mock-crud-api plugin, follow these steps:
     },
     {
         "name": "get-server-1",
-        "type": "GET",
+        "method": "GET",
         "port": 3001,
         "path": "/test",
         "input": null,
@@ -64,7 +64,7 @@ To use the mock-crud-api plugin, follow these steps:
     },
     {
         "name": "get-server-2",
-        "type": "GET",
+        "method": ["GET"],
         "port": 3002,
         "path": "/test",
         "input": {},
@@ -73,11 +73,11 @@ To use the mock-crud-api plugin, follow these steps:
     },
     {
         "name": "patch-server-3",
-        "type": "PATCH",
+        "method": ["PATCH", "PUT"],
         "port": 3003,
         "path": "/test",
         "input": {
-            "type": "json"
+            "method": "json"
         },
         "code": 201,
         "output": "Updated",

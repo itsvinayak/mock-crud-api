@@ -1,11 +1,11 @@
 [
     {
         "name": "post-server",
-        "type": "POST",
+        "method": "POST",
         "port": 3000,
         "path": "/",
         "input": {
-            "type": "text"
+            "method": "text"
         },
         "code": 200,
         "output": "text",
@@ -14,7 +14,7 @@
     },
     {
         "name": "get-server-1",
-        "type": "GET",
+        "method": "GET",
         "port": 3001,
         "path": "/test",
         "input": null,
@@ -23,7 +23,7 @@
     },
     {
         "name": "get-server-2",
-        "type": "GET",
+        "method": ["GET"],
         "port": 3002,
         "path": "/test",
         "input": {},
@@ -32,11 +32,11 @@
     },
     {
         "name": "patch-server-3",
-        "type": "PATCH",
+        "method": ["PATCH", "PUT"],
         "port": 3003,
         "path": "/test",
         "input": {
-            "type": "json"
+            "method": "json"
         },
         "code": 201,
         "output": "Updated",
