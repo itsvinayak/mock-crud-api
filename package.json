@@ -1,10 +1,13 @@
 {
   "name": "@itsvinayak/mock-crud-api",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "mock crud api for testing",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/itsvinayak/mock-rest-api.git"
+  },
+  "bin": {
+    "mock-crud-api": "./src/index.js"
   },
   "keywords": [
     "mock",
@@ -29,6 +32,7 @@
   "homepage": "https://github.com/itsvinayak/mock-rest-api",
   "main": "./src/index.js",
   "scripts": {
+    "prepublishOnly": "npm run lint && npm run test",
     "test": "jest --forceExit --detectOpenHandles --coverage",
     "dev": "node ./src/index.js -c ./exampleConfig.json",
     "start": "node ./src/index.js -c",
