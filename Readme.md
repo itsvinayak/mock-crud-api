@@ -4,6 +4,9 @@ This package allows you to create mock REST API servers for testing and developm
 
 ![MOCKAPIIMAGE](./image/MockCRUDAPI.png)
 
+[![Node.js Lint and Uts](https://github.com/itsvinayak/mock-crud-api/actions/workflows/lint-and-uts.yml/badge.svg)](https://github.com/itsvinayak/mock-crud-api/actions/workflows/lint-and-uts.yml)
+![npm](https://img.shields.io/npm/dw/mock-crud-api)
+
 ## Features
 
 - Define server configurations with port, path, request type, input, output, and error handling options.
@@ -17,12 +20,12 @@ This package allows you to create mock REST API servers for testing and developm
 
 ## Installation
 
-To install the mock-crud-api plugin, follow these steps:
+To install the mock-crud-api package, follow these steps:
 
 - Make sure you have Node.js installed on your machine.
 - Open a terminal or command prompt.
 - Navigate to your project directory.
-- Run the following command to install the plugin:
+- Run the following command to install the package:
 
 ```bash
 npx mock-crud-api -config config.json
@@ -34,7 +37,7 @@ npx mock-crud-api -c config.json
 
 ## Usage
 
-To use the mock-crud-api plugin, follow these steps:
+To use the mock-crud-api package, follow these steps:
 
 - Create a configuration file (e.g., config.json) with the server configurations.
 
@@ -99,6 +102,5 @@ In the configuration file, you can define multiple server configurations. Each c
 - errorCode: The error code to be returned if the server is not found.
 - errorMessage: The error message to be returned if the server is not found.
 
-### License
-
-This plugin is released under the MIT License.
+### License ![GitHub](https://img.shields.io/github/license/itsvinayak/mock-crud-api)
+This package is released under the MIT License.
