@@ -28,7 +28,7 @@ To install the mock-crud-api package, follow these steps:
 - Run the following command to install the package:
 
 ```bash
-npx mock-crud-api -config config.json
+npx mock-crud-api --config config.json
 ```
 
 ```bash
