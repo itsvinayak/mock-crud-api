@@ -27,7 +27,7 @@
     "url": "https://github.com/itsvinayak/mock-rest-api/issues"
   },
   "homepage": "https://github.com/itsvinayak/mock-rest-api",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest --forceExit --detectOpenHandles --coverage",
     "dev": "node index.js -c ./exampleConfig.json",

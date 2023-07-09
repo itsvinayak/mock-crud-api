@@ -7,7 +7,7 @@ const {
   parseQueryString,
   validateData,
   validateAndCheckMethod,
-} = require("../utils");
+} = require("../src/utils");
 
 describe("deepCompare", () => {
   it("should return true for equal primitive values", () => {

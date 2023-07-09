@@ -1,5 +1,5 @@
 const request = require("supertest");
-const { startMultipleServer } = require("../index");
+const { startMultipleServer } = require("../src/index");
 
 describe("API Tests", () => {
   let serverList;
