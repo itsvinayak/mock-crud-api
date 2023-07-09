@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const http = require("http");
 const chalk = require("chalk");
 const process = require("process");

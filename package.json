@@ -1,6 +1,6 @@
 {
-  "name": "@itsvinayak/mock-crud-api",
-  "version": "1.0.5",
+  "name": "mock-crud-api",
+  "version": "1.0.6",
   "description": "mock crud api for testing",
   "repository": {
     "type": "git",
