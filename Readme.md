@@ -6,6 +6,7 @@ This package allows you to create mock REST API servers for testing and developm
 
 [![Node.js Lint and Uts](https://github.com/itsvinayak/mock-crud-api/actions/workflows/lint-and-uts.yml/badge.svg)](https://github.com/itsvinayak/mock-crud-api/actions/workflows/lint-and-uts.yml)
 ![npm](https://img.shields.io/npm/dw/mock-crud-api)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/itsvinayak/mock-crud-api/main)
 
 ## Features
 
