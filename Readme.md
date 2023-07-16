@@ -5,9 +5,13 @@ This package allows you to create mock REST API servers for testing and developm
 ![MOCKAPIIMAGE](./image/MockCRUDAPI.png)
 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=black)
+<a href='https://www.npmjs.com/package/mock-crud-api'>
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+</a>
 [![Node.js Lint and Uts](https://github.com/itsvinayak/mock-crud-api/actions/workflows/lint-and-uts.yml/badge.svg)](https://github.com/itsvinayak/mock-crud-api/actions/workflows/lint-and-uts.yml)
 ![npm](https://img.shields.io/npm/dw/mock-crud-api)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/itsvinayak/mock-crud-api/main)
+
 
 ## Features
 
